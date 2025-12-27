@@ -1,3 +1,5 @@
+SETUP:
+
 1.  Create expressjs whithout frontend staff and add git folder as well.
 npx express-generator --no-view --git ./
 
@@ -30,6 +32,29 @@ with following options:
     √ Would you like to install them now? · No / Yes
     √ Which package manager do you want to use? · npm
 
+PUSH TO GITHUB ===============================================================>
 
+1. install dotenv for envirment files
+npm install dotenv
+2. Create folder name config 
+3. Create file name env.js inside the config folder to export every env variable from there. add folowing code:
+
+    import { config } from "dotenv"
+    config({path: `.env.${process.env.NODE_ENV || 'development'}.local`})
+    export const { PORT } = process.env;
+
+4. create following files for production and development
+    .env.production.local 
+    .env.development.local
+
+5. inside the .env.development.local add following:
+    PORT=5500
+    NODE_ENV='development'
+6. inside the .env.prodcution.local add following:
+    NODE_ENV='production'
+7. Import the env variable every where you need like app.js 
+    import { PORT } from "./config/env.js"
+8. Add env inside the .gitignore to ignore during the github PUSH
+    .env.*.local
 
 
