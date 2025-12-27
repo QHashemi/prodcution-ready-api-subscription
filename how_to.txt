@@ -1,0 +1,35 @@
+1.  Create expressjs whithout frontend staff and add git folder as well.
+npx express-generator --no-view --git ./
+
+2. install nodemon as dev dependenci so that we can use only in development
+npm install --save-dev nodemon
+
+3. in package.json add folowing to not use require syntaxt
+
+{"type": "module"}
+
+4. add start script to start the app in production and development
+  "scripts": {
+    "start": "node app.js",
+    "dev":"nodemon app.js"
+  },
+
+5. add eslint to keep our code clean
+npx eslint --init
+with following options:
+
+    √ What do you want to lint? · javascript
+    √ How would you like to use ESLint? · problems
+    √ What type of modules does your project use? · esm
+    √ Which framework does your project use? · none
+    √ Does your project use TypeScript? · No / Yes
+    √ Where does your code run? · node
+    i The config that you've selected requires the following dependencies:
+
+    eslint, @eslint/js, globals
+    √ Would you like to install them now? · No / Yes
+    √ Which package manager do you want to use? · npm
+
+
+
+
