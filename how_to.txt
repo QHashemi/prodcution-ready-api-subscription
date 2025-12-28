@@ -58,3 +58,54 @@ npm install dotenv
     .env.*.local
 
 
+PUSH TO GITHUB ===================================================================>
+
+1. create folder name routes. Every routes going there like as folowing:
+    import  { Router } from  'express';
+    const authRouter = Router();
+    authRouter.post('/sign-up', (req, res) => res.send({title: "SIGN-UP"}));
+    export default authRouter;
+
+2. emport all routes into app.js and use as following:
+    import authRouter from "./routes/auth.routes.js";
+    app.use("/api/v1/auth", authRouter);
+
+PUSH TO GITHUB ====================================================================>
+setup db:
+1. Login into mongodb or use any other sql db.
+    https://www.mongodb.com/
+2. Create project or cluster 
+3. Copy the username and password or create new one
+    user: qhashemi100_db_user
+    pwd: NsMEWJsU0h1IQJwE
+4. click create Database and click on choose a connection method
+5. click on Drivers and copy the installation command and install the mongodb
+    npm install mongodb
+6. install the mongoose ORM
+    npm install mongoose
+7. copy the connection string: if the username and password not exists replace it with actual datas:
+    mongodb+srv://qhashemi100_db_user:NsMEWJsU0h1IQJwE@cluster01.uudiegu.mongodb.net/?appName=Cluster01
+8. add the mongodb URL into .env.prodcution.local and .env.development.local env files:
+9. export the DB_URL from env.js like so:
+    export const { PORT, NODE_ENV, DB_URL } = process.env;
+10. create folder name database and inisde the that folder create mongodb.js
+11. add the db configuration
+12. import configuration inside the app.js and add as following:
+    app.listen(PORT, async () => {
+        console.log(`Server is running on port ${PORT}`);
+        await connectToDatabase();
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
