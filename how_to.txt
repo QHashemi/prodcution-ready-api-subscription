@@ -162,10 +162,20 @@ Auth Setup:
     npm install jsonwebtoken
 
 
+PUSH TO GITHUB ====================================================================>
+Authorization:
+1. Create file name user.controller.js inside the controllers folder
+2. Add get, update, insert, delete logic for the user
+3. Create file name user.middleware.js inisde middleware folder 
+4. add logic of route protection for the user, so that every user not able to access everything in the page.
+5. We can use the middleware like as following:
+
+    import authorize from '../middlewares/auth.middleware.js'
+    userRouter.get('/:id', authorize, getUser);
+
+6. we can add middleware to check if the user is admin or not 
 
 
-
-
-
+PUSH TO GITHUB ====================================================================>
 
 
