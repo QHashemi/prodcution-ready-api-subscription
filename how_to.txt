@@ -96,10 +96,70 @@ setup db:
         await connectToDatabase();
     });
 
+PUSH TO GITHUB ====================================================================>
+
+Create modules:
+1. Create folder name modules
+2. inside the models folder create different models file like folowing:
+    user.model.js
+    subscription.model.js
+    ....
 
 
 
+PUSH TO GITHUB ====================================================================>
 
+Error Handler (The middleware runs before everything else)
+1. create folder name middlewares
+2. inside the middlewares folder create file name error.middleware.js 
+3. Example see inside errorMiddleware.js
+Example: 
+    const errorMiddleware = (err, req, res, next) => {
+    try {
+        let error = { ...err };
+
+        error.message = err.message;
+
+        console.error(err);
+
+        // Mongoose bad ObjectId 
+        if (err.name === 'CastError') {
+        const message = 'Resource not found';
+        error = new Error(message);
+        error.statusCode = 404;
+        }
+
+
+        res.status(error.statusCode || 500).json({ success: false, error: error.message || 'Server Error' });
+    } catch (error) {
+        next(error);
+    }
+    };
+
+    export default errorMiddleware;
+4. Use error handler middleware inside app.js as following:
+    app.use(errorMiddleware);
+5. add other middleware such as: 
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(cookieParser());
+    app.use(arcjetMiddleware);
+
+
+PUSH TO GITHUB ====================================================================>
+Auth Setup:
+1. add following env variable for jwt: (we use json web token for our authentication)
+    JWT_SECRET="secret"
+    JWT_EXPIRES_IN="1d"
+2. add JWT variable into env.js configuration so that we can use inside the app:
+    Example: 
+    export const { JWT_SECRET, JWT_EXPIRES_IN } = process.env;
+3. Create folder name controllers. inside the controllers is alle the controllers from the app. like auth, user, ...
+4. create file name auth.controller.js inisde the controllers folder
+5. install bcrypt for the password increaption
+    npm install bcryptjs
+6. install jwt for authentication 
+    npm install jsonwebtoken
 
 
 
